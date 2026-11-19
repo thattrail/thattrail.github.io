@@ -208,6 +208,23 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
   *{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* ---------- phone fixes ---------- */
+.route{height:min(420px,62vh,84vw)}
+@media (max-width:640px){
+  .trail-svg{display:none}
+  .stamps{gap:12px 10px}
+  .stamp{width:150px;height:150px}
+  .stamp img{inset:22px;width:calc(100% - 44px);height:calc(100% - 44px)}
+  .stamp b{font-size:22px;transform:translateY(48px) rotate(-4deg)}
+  .groups figure:nth-child(n){aspect-ratio:3/4}
+  .rail{padding:28px 16px 24px;gap:14px}
+  .route:nth-child(odd){margin-top:0}
+  .eyebrow{letter-spacing:.16em}
+  .hero-tags{display:none}
+  .film{margin-top:56px;padding:14px 0}
+  .film-track img{height:150px;width:112px}
+}
 </style>
 </head>
 <body>
