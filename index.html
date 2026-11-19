@@ -60,23 +60,16 @@ nav.solid{background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-fi
 @media (max-width:900px){.alt{display:none}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;background:#1d2420;color:#f6f1e7}
-.hero-photo{position:absolute;inset:-6% 0 0 0;will-change:transform}
-.hero-photo img{width:100%;height:100%;object-fit:cover;animation:kenburns 26s ease-in-out infinite alternate}
-@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,1%)}}
-.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,18,16,.55) 0%,rgba(15,18,16,.15) 40%,rgba(15,18,16,.25) 65%,rgba(15,18,16,.85) 100%)}
-.hero-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18vh 16px 0;text-align:center;z-index:5}
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:linear-gradient(180deg,var(--sky) 0%,var(--paper) 70%)}
+.hero .layer{position:absolute;left:-5%;width:110%;bottom:0;will-change:transform}
+.hero .sun{position:absolute;left:50%;top:64%;width:min(34vw,300px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--sun-soft),var(--sun) 60%);transform:translate(-50%,-50%);filter:saturate(1.1);will-change:transform}
+.hero-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:18vh;text-align:center;z-index:5}
 .eyebrow{font:600 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
-.hero .eyebrow{color:rgba(246,241,231,.85)}
-h1{font-family:var(--display);font-weight:400;font-size:clamp(64px,13vw,188px);line-height:.86;letter-spacing:.01em;margin-top:12px;color:#f6f1e7;text-shadow:0 4px 40px rgba(0,0,0,.35)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(64px,13vw,188px);line-height:.86;letter-spacing:.01em;margin-top:12px;color:var(--ink);mix-blend-mode:multiply}
+:root[data-theme="dark"] h1{mix-blend-mode:normal}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) h1{mix-blend-mode:normal}}
 h1 em{font-style:normal;color:var(--sun)}
-.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,24px);margin-top:18px;max-width:560px;color:rgba(246,241,231,.9)}
-.polaroid{position:absolute;z-index:4;background:#fbf8f1;padding:8px 8px 30px;box-shadow:0 18px 40px rgba(0,0,0,.35);width:clamp(120px,14vw,190px);will-change:transform}
-.polaroid img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
-.polaroid figcaption{position:absolute;bottom:6px;left:0;right:0;text-align:center;font:italic 15px var(--serif);color:#3a3a3a}
-.polaroid.p1{left:6%;bottom:16%;transform:rotate(-8deg)}
-.polaroid.p2{right:6%;top:22%;transform:rotate(7deg)}
-@media (max-width:900px){.polaroid{display:none}}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,24px);margin-top:18px;max-width:560px;color:var(--ink-soft)}
 .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;color:#f3eee4;font:600 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
 .scroll-cue i{width:1px;height:38px;background:currentColor;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -104,14 +97,6 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,7vw,92px);lin
 .dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--rock-2);transition:left 1.6s cubic-bezier(.4,0,.2,1),top 1.6s cubic-bezier(.4,0,.2,1)}
 .vs-card.good .dot{background:var(--sun);width:14px;height:14px;box-shadow:0 0 0 5px color-mix(in srgb,var(--sun) 22%,transparent)}
 .noise{position:absolute;right:14px;top:12px;font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
-.groups{display:grid;grid-template-columns:1.2fr .9fr 1.1fr .9fr;gap:14px;margin-top:28px;align-items:end}
-.groups figure{position:relative;border-radius:18px;overflow:hidden}
-.groups figure:nth-child(odd){aspect-ratio:1}
-.groups figure:nth-child(even){aspect-ratio:3/4}
-.groups img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.groups figure:hover img{transform:scale(1.06)}
-.groups figcaption{position:absolute;left:12px;bottom:10px;font:italic 15px var(--serif);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
-@media (max-width:820px){.groups{grid-template-columns:1fr 1fr}}
 .reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
 @media (max-width:820px){.reasons{grid-template-columns:1fr}}
 .reason{padding:22px 0;border-top:2px solid var(--ink)}
@@ -124,24 +109,30 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,7vw,92px);lin
 .rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:48px 24px 30px;margin-top:8px;scrollbar-width:none;cursor:grab}
 .rail::-webkit-scrollbar{display:none}
 .rail.dragging{cursor:grabbing;scroll-snap-type:none}
-.route{flex:0 0 min(300px,72vw);aspect-ratio:3/4;border-radius:20px;position:relative;overflow:hidden;scroll-snap-align:center;user-select:none;box-shadow:0 14px 30px rgba(0,0,0,.18);transition:transform .4s cubic-bezier(.2,.8,.2,1);background:var(--paper-2)}
-.route:nth-child(odd){margin-top:26px}
-.route:hover{transform:translateY(-8px) rotate(-.8deg)}
-.route img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.route{flex:0 0 min(330px,80vw);aspect-ratio:4/5;border-radius:20px;position:relative;overflow:hidden;scroll-snap-align:center;color:#fff;transition:transform .4s cubic-bezier(.2,.8,.2,1);user-select:none}
+.route:hover{transform:translateY(-8px) rotate(-.6deg)}
+.route svg.scape{position:absolute;inset:0;width:100%;height:100%}
+.route .head{position:absolute;top:18px;left:18px;right:18px}
+.route .tag{display:flex;align-items:center;gap:10px}
+.route .tag svg{width:34px;height:34px;flex:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.25))}
+.route .hy{font-family:"Noto Sans Armenian",sans-serif;font-weight:800;font-size:24px;line-height:1.05;letter-spacing:.01em;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.route .en{margin:8px 0 0 44px;display:flex;justify-content:space-between;font:600 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;opacity:.95}
+.route .meta{position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;align-items:end}
+.route .elev{font-family:var(--display);font-size:46px;line-height:.9}
+.route .elev small{font-size:16px;opacity:.8;margin-left:2px}
+.route .region{font:500 12px var(--sans);background:rgba(0,0,0,.28);backdrop-filter:blur(6px);padding:6px 11px;border-radius:999px}
 
 /* ---------- stamps ---------- */
-.stamps{display:flex;flex-wrap:wrap;gap:16px;margin-top:52px;justify-content:center}
-.stamp{width:164px;height:164px;border-radius:50%;position:relative;display:grid;place-items:center;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.stamps{display:flex;flex-wrap:wrap;gap:22px;margin-top:52px;justify-content:center}
+.stamp{width:150px;height:150px;border-radius:50%;border:2px dashed var(--ink);display:grid;place-items:center;text-align:center;position:relative;transition:transform .5s cubic-bezier(.2,.8,.2,1);cursor:default}
 .stamp:nth-child(odd){transform:rotate(-7deg)}
 .stamp:nth-child(even){transform:rotate(5deg)}
 .stamp:hover{transform:rotate(0) scale(1.07)}
-.stamp img{position:absolute;inset:24px;width:calc(100% - 48px);height:calc(100% - 48px);border-radius:50%;object-fit:cover;filter:saturate(1.05)}
-.stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite}
-.stamp:nth-child(even) svg{animation-direction:reverse}
-@keyframes spin{to{transform:rotate(360deg)}}
-.stamp::before{content:"";position:absolute;inset:4px;border-radius:50%;border:2px dashed var(--ink);opacity:.5}
-.stamp text{font:600 12.5px var(--sans);letter-spacing:.18em;fill:var(--ink)}
-.stamp b{position:relative;font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.06em;color:#fff;background:var(--sun);color:#1b1b1b;padding:2px 10px;border-radius:6px;transform:translateY(54px) rotate(-4deg)}
+.stamp .ic{font-size:30px;display:block}
+.stamp b{display:block;font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:.06em;margin-top:2px}
+.stamp small{font:500 11px var(--sans);color:var(--ink-soft)}
+.stamp.hot{background:var(--sun);border-color:var(--sun);color:#1b1b1b}
+.stamp.hot small{color:#3a2418}
 
 /* ---------- how ---------- */
 .how{background:var(--rock-1);color:#efe9de}
@@ -159,11 +150,6 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,7vw,92px);lin
 /* ---------- numbers ---------- */
 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 @media (max-width:820px){.nums{grid-template-columns:1fr 1fr}}
-.anniv{display:flex;align-items:center;gap:28px;margin-top:40px}
-.anniv img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 10px 30px rgba(0,0,0,.15);animation:bob 5s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-8px) rotate(3deg)}}
-.anniv p{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);max-width:560px;line-height:1.3}
-@media (max-width:640px){.anniv{flex-direction:column;align-items:flex-start}}
 .num{padding:30px 18px;border-right:1px solid var(--line)}
 .num:last-child{border-right:0}
 @media (max-width:820px){.num:nth-child(2){border-right:0}.num:nth-child(-n+2){border-bottom:1px solid var(--line)}}
@@ -179,13 +165,7 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,7vw,92px);lin
 .btn.primary{background:var(--sun);border-color:var(--sun);color:#1b1b1b}
 .btn.ghost:hover{background:var(--ink);color:var(--paper)}
 .btn svg{width:18px;height:18px}
-.film{margin-top:80px;background:#111;padding:18px 0;position:relative;overflow:hidden;transform:rotate(-2deg) scale(1.04)}
-.film::before,.film::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,transparent 0 10px,#f3eee4 10px 22px);opacity:.75}
-.film::before{top:4px}.film::after{bottom:4px}
-.film-track{display:flex;gap:10px;width:max-content;animation:roll 70s linear infinite}
-.film:hover .film-track{animation-play-state:paused}
-.film-track img{height:220px;width:165px;object-fit:cover;border-radius:3px;filter:sepia(.15) saturate(1.1)}
-@keyframes roll{to{transform:translateX(-50%)}}
+.cta-scape{display:block;width:100%;height:auto;margin-top:80px}
 footer{background:var(--rock-1);color:#a9a397;font-size:13px;padding:22px 0 30px}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
@@ -245,10 +225,7 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
 </div>
 
 <header class="hero" id="top">
-  <div class="hero-photo" id="heroPhoto"><img src="img/hero.jpg" alt="Clouds drifting over forested mountains in Armenia" fetchpriority="high"></div>
-  <div class="hero-shade"></div>
-  <figure class="polaroid p1"><img src="img/group-summit.jpg" alt="A That Trail group on a summit of Mt. Aragats"><figcaption>Aragats</figcaption></figure>
-  <figure class="polaroid p2"><img src="img/rest.jpg" alt="A hiker resting in a meadow"><figcaption>lunch break</figcaption></figure>
+  <div class="sun" id="sun"></div>
   <div class="hero-copy">
     <div class="eyebrow">
       <span data-l="en">Small group hikes · Armenia · since 2021</span>
@@ -266,6 +243,13 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
       <span data-l="ru">Никаких автобусов на сорок человек. Только мы, хорошая тропа и обед с видом.</span>
     </p>
   </div>
+  <svg class="layer" data-speed="0.55" viewBox="0 0 1440 520" preserveAspectRatio="none" style="height:62%"><path fill="var(--rock-4)" d="M0 300 L120 210 L210 260 L330 140 L470 250 L560 190 L700 280 L820 160 L940 240 L1060 120 L1180 230 L1300 170 L1440 250 V520 H0Z"/></svg>
+  <svg class="layer" data-speed="0.35" viewBox="0 0 1440 520" preserveAspectRatio="none" style="height:50%"><path fill="var(--rock-3)" d="M0 340 L160 230 L260 300 L400 200 L520 310 L660 220 L780 320 L900 230 L1040 330 L1180 210 L1320 300 L1440 240 V520 H0Z"/></svg>
+  <svg class="layer" data-speed="0.18" viewBox="0 0 1440 520" preserveAspectRatio="none" style="height:38%"><path fill="var(--rock-2)" d="M0 360 L200 260 L340 350 L480 270 L640 380 L760 300 L900 390 L1080 280 L1220 370 L1440 290 V520 H0Z"/></svg>
+  <svg class="layer" data-speed="0.05" viewBox="0 0 1440 400" preserveAspectRatio="none" style="height:26%">
+    <path fill="var(--rock-1)" d="M0 220 L240 120 L420 210 L620 130 L820 230 L1040 140 L1240 220 L1440 150 V400 H0Z"/>
+    <path id="heroTrail" d="M1120 400 C 1090 340, 1200 320, 1160 270 S 1040 230, 1090 175" fill="none" stroke="#f3eee4" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 16" opacity=".85"/>
+  </svg>
   <div class="hero-tags">
     <span>Shresht Gorge</span><span>Pink Gorge</span><span>Haghartsin → Dilijan</span><span>Aragats 3000 m</span><span>Khustup</span>
   </div>
@@ -303,13 +287,6 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
           <p><span data-l="en">A pace that suits everyone, and room to breathe.</span><span data-l="hy">Բնական տեմպ ու տեղ՝ շնչելու։</span><span data-l="ru">Естественный темп и место, чтобы дышать.</span></p>
           <div class="field" id="few"></div>
         </div>
-      </div>
-
-      <div class="groups">
-        <figure class="reveal"><img src="img/group-raincoats.jpg" alt="Hikers in colourful raincoats in a red rock gorge" loading="lazy"><figcaption><span data-l="en">Rain? Raincoats.</span><span data-l="hy">Անձրև՞։ Անձրևանոց։</span><span data-l="ru">Дождь? Дождевики.</span></figcaption></figure>
-        <figure class="reveal"><img src="img/group-flowers.jpg" alt="A small group standing in a yellow flower meadow" loading="lazy"><figcaption><span data-l="en">Spring meadows</span><span data-l="hy">Գարնանային մարգագետին</span><span data-l="ru">Весенние луга</span></figcaption></figure>
-        <figure class="reveal"><img src="img/group-hors.jpg" alt="Hikers looking out over mountains near Hors Lake" loading="lazy"><figcaption>Hors Lake</figcaption></figure>
-        <figure class="reveal"><img src="img/walker.jpg" alt="A hiker walking a dirt road toward a rocky peak" loading="lazy"><figcaption><span data-l="en">Room to breathe</span><span data-l="hy">Տեղ՝ շնչելու</span><span data-l="ru">Место, чтобы дышать</span></figcaption></figure>
       </div>
 
       <div class="reasons">
@@ -355,12 +332,12 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
         <span data-l="ru">Каждую субботу —<br>новая отметка.</span>
       </h2>
       <div class="stamps">
-        <div class="stamp reveal"><img src="img/s-summits.jpg" alt="Three hikers looking out over snowfields" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-summits" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-summits">THAT TRAIL · SUMMITS · ARAGATS · AZHDAHAK ·</textPath></text></svg><b>Summits</b></div>
-        <div class="stamp reveal"><img src="img/s-waterfalls.jpg" alt="Hiker with berries by a waterfall" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-waterfalls" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-waterfalls">THAT TRAIL · WATERFALLS · GEGHAROT, 3000 M ·</textPath></text></svg><b>Waterfalls</b></div>
-        <div class="stamp reveal"><img src="img/s-forests.jpg" alt="Hikers by a forest stream" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-forests" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-forests">THAT TRAIL · FORESTS · DILIJAN · LORI ·</textPath></text></svg><b>Forests</b></div>
-        <div class="stamp reveal"><img src="img/s-roads.jpg" alt="A road leading toward Mt. Ararat" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-roads" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-roads">THAT TRAIL · ROADS · HALF THE FUN ·</textPath></text></svg><b>Roads</b></div>
-        <div class="stamp reveal"><img src="img/s-gorges.jpg" alt="Snow bridge in a narrow gorge" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-gorges" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-gorges">THAT TRAIL · GORGES · SHRESHT · PINK ·</textPath></text></svg><b>Gorges</b></div>
-        <div class="stamp reveal"><img src="img/s-moments.jpg" alt="A cup of coffee on a trail picnic" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-moments" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-moments">THAT TRAIL · MOMENTS · COFFEE WITH A VIEW ·</textPath></text></svg><b>Moments</b></div>
+        <div class="stamp reveal"><div><span class="ic">⛰</span><b>Summits</b><small>Aragats · Khustup</small></div></div>
+        <div class="stamp hot reveal"><div><span class="ic">💧</span><b>Waterfalls</b><small>Gegharot, 3000 m</small></div></div>
+        <div class="stamp reveal"><div><span class="ic">🌲</span><b>Forests</b><small>Dilijan · Lori</small></div></div>
+        <div class="stamp reveal"><div><span class="ic">🛣</span><b>Roads</b><small>the drive is half of it</small></div></div>
+        <div class="stamp reveal"><div><span class="ic">🏜</span><b>Gorges</b><small>Shresht · Pink</small></div></div>
+        <div class="stamp hot reveal"><div><span class="ic">🥧</span><b>Moments</b><small>lunch with a view</small></div></div>
       </div>
     </div>
   </section>
@@ -414,7 +391,6 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
         <span data-l="hy">Փոքր խմբեր։<br>Երկար պատմություն։</span>
         <span data-l="ru">Маленькие группы.<br>Долгая история.</span>
       </h2>
-      <div class="anniv reveal"><img src="img/anniversary.jpg" alt="That Trail 5th anniversary logo" loading="lazy"><p><span data-l="en">2026 is our fifth year on the trail. Thank you to everyone who walked with us.</span><span data-l="hy">2026-ը մեր հինգերորդ տարին է արահետին։ Շնորհակալություն բոլոր նրանց, ովքեր քայլեցին մեզ հետ։</span><span data-l="ru">2026 — наш пятый год на тропе. Спасибо всем, кто шёл с нами.</span></p></div>
       <div class="nums">
         <div class="num reveal"><b data-count="2021">2021</b><span data-l="en">on the trail since</span><span data-l="hy">արահետին ենք</span><span data-l="ru">на тропе с</span></div>
         <div class="num reveal"><b data-count="3000">3000</b><span data-l="en">metres, highest waterfall stop</span><span data-l="hy">մետր՝ Գեղարոտ ջրվեժ</span><span data-l="ru">метров — водопад Гегарот</span></div>
@@ -453,7 +429,11 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
         </a>
       </div>
     </div>
-    <div class="film" aria-hidden="true"><div class="film-track"><img src="img/f-09.jpg" alt="" loading="lazy"><img src="img/f-16.jpg" alt="" loading="lazy"><img src="img/f-19.jpg" alt="" loading="lazy"><img src="img/f-20.jpg" alt="" loading="lazy"><img src="img/f-22.jpg" alt="" loading="lazy"><img src="img/f-23.jpg" alt="" loading="lazy"><img src="img/f-26.jpg" alt="" loading="lazy"><img src="img/f-33.jpg" alt="" loading="lazy"><img src="img/f-41.jpg" alt="" loading="lazy"><img src="img/f-43.jpg" alt="" loading="lazy"><img src="img/f-47.jpg" alt="" loading="lazy"><img src="img/f-49.jpg" alt="" loading="lazy"><img src="img/f-53.jpg" alt="" loading="lazy"><img src="img/f-08.jpg" alt="" loading="lazy"><img src="img/f-18.jpg" alt="" loading="lazy"><img src="img/f-09.jpg" alt="" loading="lazy"><img src="img/f-16.jpg" alt="" loading="lazy"><img src="img/f-19.jpg" alt="" loading="lazy"><img src="img/f-20.jpg" alt="" loading="lazy"><img src="img/f-22.jpg" alt="" loading="lazy"><img src="img/f-23.jpg" alt="" loading="lazy"><img src="img/f-26.jpg" alt="" loading="lazy"><img src="img/f-33.jpg" alt="" loading="lazy"><img src="img/f-41.jpg" alt="" loading="lazy"><img src="img/f-43.jpg" alt="" loading="lazy"><img src="img/f-47.jpg" alt="" loading="lazy"><img src="img/f-49.jpg" alt="" loading="lazy"><img src="img/f-53.jpg" alt="" loading="lazy"><img src="img/f-08.jpg" alt="" loading="lazy"><img src="img/f-18.jpg" alt="" loading="lazy"></div></div>
+    <svg class="cta-scape" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+      <circle cx="980" cy="150" r="70" fill="var(--sun)"/>
+      <path fill="var(--rock-3)" d="M0 220 L180 130 L330 200 L520 90 L700 190 L880 110 L1060 200 L1240 120 L1440 190 V300 H0Z"/>
+      <path fill="var(--rock-1)" d="M0 260 L220 180 L420 250 L640 170 L860 260 L1080 190 L1300 250 L1440 210 V300 H0Z"/>
+    </svg>
   </section>
 </main>
 
@@ -481,18 +461,39 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
 
   /* ---------- routes (from the Instagram feed) ---------- */
   const routes = [
-    ['shresht','Shresht Gorge'],['pink-gorge','Pink Gorge'],['haghartsin','Haghartsin → Dilijan'],['mozrov','Mozrov → Noravank'],
-    ['maymekh','Maymekh, Lori'],['khachrozan','Around Khachrozan'],['aragats-south','Mt. Aragats, Southern'],['gegharot','Gegharot Waterfall'],
-    ['azhdahak','Azhdahak & Karmir Katar'],['aparan','Aparan Reservoir Loop'],['amberd','Antarut → Amberd'],['dimats','Mt. Dimats'],
-    ['andzavabatsat','Andzavabatsat'],['apakekar','Apakekar Trail'],['lusadzor','Lusadzor → Mtnadzor'],['havuts-tar','Havuts Tar'],
-    ['arpa','Arpa Protected Landscape'],['vayots-dzor','Ararat → Vayots Dzor'],['sarnut','Mt. Sarnut'],['gastro-azat','Gastro Azat'],
-    ['smbatabert','Smbataberd'],['trchkan','Trchkan Waterfall']
+    { hy:'Շրեշտի կիրճ', en:'Shresht Gorge', date:'14/11/2026', elev:'1900', region:'Vayots Dzor', pal:['#9fb4c7','#e6b67a','#b07a4a','#6f4a33'] },
+    { hy:'Վարդագույն կիրճ', en:'Pink Gorge', date:'07/11/2026', elev:'1600', region:'Ararat', pal:['#c9d3d8','#e9c9b2','#c48c78','#8a5a4c'] },
+    { hy:'Հաղարծնից Դիլիջան', en:'Haghartsin → Dilijan', date:'25/11/2026', elev:'1500', region:'Tavush', pal:['#a9c6dc','#7fa860','#4f7d3b','#2f5226'] },
+    { hy:'Գեղարոտ ջրվեժ', en:'Gegharot Waterfall', date:'16/08/2026', elev:'3000', region:'Aragats', pal:['#b8d0e0','#8a9a8a','#5d6b63','#3a443f'] },
+    { hy:'Մայմեխ', en:'Maymekh', date:'12/09/2026', elev:'2400', region:'Lori', pal:['#7fa0c2','#e0a560','#b67a45','#4a3a33'] },
+    { hy:'Խաչրոզանի շուրջ', en:'Around Khachrozan', date:'06/2026', elev:'1700', region:'Lori', pal:['#bfd6e6','#6f9a5a','#3f6e3a','#24442a'] },
+    { hy:'Մոզրովից Նորավանք', en:'Mozrov → Noravank', date:'2026', elev:'1800', region:'Vayots Dzor', pal:['#9ec3e0','#d39a6a','#a85e3e','#5e3425'] },
+    { hy:'Խուստուփ', en:'Khustup', date:'2026', elev:'3201', region:'Syunik', pal:['#c3d2da','#a7b4a0','#6a7a6c','#363f3b'] },
+    { hy:'Մթնալիճ', en:'Mtnalitch', date:'07/2026', elev:'2700', region:'Aragats', pal:['#cbd5dc','#9fa79a','#6c7468','#3b413b'] }
   ];
   const rail = document.getElementById('rail');
-  routes.forEach(([f, name]) => {
+  const ridge = (seed, base, amp) => {
+    let d = `M0 ${base}`, x = 0, r = seed;
+    while (x < 400) { r = (r * 9301 + 49297) % 233280; x += 30 + (r / 233280) * 50; const y = base - (r / 233280) * amp; d += ` L${x.toFixed(0)} ${y.toFixed(0)}`; }
+    return d + ' L400 500 L0 500Z';
+  };
+  routes.forEach((r, i) => {
     const el = document.createElement('article');
     el.className = 'route';
-    el.innerHTML = `<img src="img/r-${f}.jpg" alt="That Trail route cover: ${name}" loading="lazy" draggable="false">`;
+    const [s, a, b, c] = r.pal;
+    el.innerHTML = `
+      <svg class="scape" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs><linearGradient id="g${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${s}"/><stop offset="1" stop-color="#f3eee4"/></linearGradient></defs>
+        <rect width="400" height="500" fill="url(#g${i})"/>
+        <circle cx="${280 - i * 14}" cy="${170 + (i % 3) * 18}" r="34" fill="#ee7a4c" opacity=".9"/>
+        <path d="${ridge(i * 7 + 3, 300, 120)}" fill="${a}"/>
+        <path d="${ridge(i * 13 + 5, 360, 110)}" fill="${b}"/>
+        <path d="${ridge(i * 17 + 11, 430, 90)}" fill="${c}"/>
+        <path d="M200 500 C 170 470, 240 450, 210 420 S 150 390, 190 360" fill="none" stroke="#f3eee4" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round" opacity=".85"/>
+      </svg>
+      <div class="head"><div class="tag"><svg><use href="#logo"/></svg><div class="hy">${r.hy}</div></div>
+      <div class="en"><span>${r.en}</span><span>${r.date}</span></div></div>
+      <div class="meta"><div class="elev">${r.elev}<small>m</small></div><div class="region">${r.region}</div></div>`;
     rail.appendChild(el);
   });
   // drag to scroll
@@ -544,15 +545,15 @@ html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
   }
 
   /* ---------- scroll effects ---------- */
-  const nav = document.getElementById('nav'), heroPhoto = document.getElementById('heroPhoto');
-  const polas = [...document.querySelectorAll('.polaroid')];
+  const nav = document.getElementById('nav'), sun = document.getElementById('sun');
+  const layers = [...document.querySelectorAll('.hero .layer')];
   const altFill = document.getElementById('altFill'), altVal = document.getElementById('altVal');
   function onScroll() {
     const y = scrollY, vh = innerHeight, max = document.documentElement.scrollHeight - vh;
     nav.classList.toggle('solid', y > 40);
     if (!reduce && y < vh * 1.2) {
-      heroPhoto.style.transform = `translateY(${y * .35}px)`;
-      polas.forEach((p, i) => p.style.transform = `translateY(${-y * (i ? .25 : .45)}px) rotate(${i ? 7 : -8}deg)`);
+      layers.forEach(l => l.style.transform = `translateY(${y * l.dataset.speed}px)`);
+      sun.style.transform = `translate(-50%, calc(-50% + ${y * .7}px))`;
     }
     const p = max > 0 ? Math.min(1, y / max) : 0;
     altFill.style.height = (p * 100) + '%';

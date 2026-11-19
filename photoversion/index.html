@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>That Trail Hikes</title>
+<meta name="description" content="Exceptionally small group hikes in Armenia since 2021.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Noto+Sans+Armenian:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3eee4; --paper-2:#e8e0d0; --ink:#232323; --ink-soft:#55524c;
+  --rock-1:#3b3b3b; --rock-2:#5c5c5c; --rock-3:#8a8a88; --rock-4:#b9b6ae;
+  --sun:#ee7a4c; --sun-soft:#f6b493; --moss:#5e7a4f; --sky:#dfe6e4;
+  --card:#fffaf1; --line:rgba(35,35,35,.14);
+  --display:"Bebas Neue","Noto Sans Armenian",Impact,sans-serif;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter","Noto Sans Armenian",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#16181a; --paper-2:#1f2224; --ink:#ece7dc; --ink-soft:#a9a397;
+    --rock-1:#0c0d0e; --rock-2:#2a2d2f; --rock-3:#43474a; --rock-4:#5d6265;
+    --sun:#f08a5d; --sun-soft:#8a4a32; --moss:#8fae7c; --sky:#202629;
+    --card:#1e2123; --line:rgba(236,231,220,.14);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16181a; --paper-2:#1f2224; --ink:#ece7dc; --ink-soft:#a9a397;
+  --rock-1:#0c0d0e; --rock-2:#2a2d2f; --rock-3:#43474a; --rock-4:#5d6265;
+  --sun:#f08a5d; --sun-soft:#8a4a32; --moss:#8fae7c; --sky:#202629;
+  --card:#1e2123; --line:rgba(236,231,220,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media (max-width:640px){.wrap{padding:0 16px}}
+
+/* ---------- nav ---------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;transition:background .3s,backdrop-filter .3s}
+nav.solid{background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-size:26px;letter-spacing:.04em}
+.brand svg{width:38px;height:38px}
+.nav-r{display:flex;gap:8px;align-items:center}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--ink);font:600 12px var(--sans);padding:7px 11px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--sun);color:#1b1b1b;text-decoration:none;font-weight:600;font-size:14px;padding:9px 16px;border-radius:999px;transition:transform .2s}
+.pill:hover{transform:translateY(-2px)}
+@media (max-width:640px){nav{padding:10px 16px}.brand span{display:none}.nav-r .pill{display:none}}
+
+/* ---------- altimeter ---------- */
+.alt{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;align-items:center;gap:10px;font:600 11px var(--sans);color:var(--ink-soft);pointer-events:none}
+.alt .bar{width:3px;height:180px;background:var(--line);border-radius:3px;position:relative;overflow:hidden}
+.alt .fill{position:absolute;bottom:0;left:0;right:0;background:var(--sun);height:0}
+.alt .val{font-family:var(--display);font-size:22px;color:var(--ink);letter-spacing:.03em;writing-mode:vertical-rl;transform:rotate(180deg)}
+@media (max-width:900px){.alt{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;background:#1d2420;color:#f6f1e7}
+.hero-photo{position:absolute;inset:-6% 0 0 0;will-change:transform}
+.hero-photo img{width:100%;height:100%;object-fit:cover;animation:kenburns 26s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,1%)}}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,18,16,.55) 0%,rgba(15,18,16,.15) 40%,rgba(15,18,16,.25) 65%,rgba(15,18,16,.85) 100%)}
+.hero-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18vh 16px 0;text-align:center;z-index:5}
+.eyebrow{font:600 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft)}
+.hero .eyebrow{color:rgba(246,241,231,.85)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(64px,13vw,188px);line-height:.86;letter-spacing:.01em;margin-top:12px;color:#f6f1e7;text-shadow:0 4px 40px rgba(0,0,0,.35)}
+h1 em{font-style:normal;color:var(--sun)}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,24px);margin-top:18px;max-width:560px;color:rgba(246,241,231,.9)}
+.polaroid{position:absolute;z-index:4;background:#fbf8f1;padding:8px 8px 30px;box-shadow:0 18px 40px rgba(0,0,0,.35);width:clamp(120px,14vw,190px);will-change:transform}
+.polaroid img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+.polaroid figcaption{position:absolute;bottom:6px;left:0;right:0;text-align:center;font:italic 15px var(--serif);color:#3a3a3a}
+.polaroid.p1{left:6%;bottom:16%;transform:rotate(-8deg)}
+.polaroid.p2{right:6%;top:22%;transform:rotate(7deg)}
+@media (max-width:900px){.polaroid{display:none}}
+.scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;color:#f3eee4;font:600 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-cue i{width:1px;height:38px;background:currentColor;animation:cue 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-tags{position:absolute;bottom:90px;left:0;right:0;z-index:6;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 16px}
+.hero-tags span{font:500 12px var(--sans);color:#f3eee4;border:1px solid rgba(243,238,228,.35);padding:6px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+
+/* ---------- sections ---------- */
+section{position:relative;padding:120px 0}
+@media (max-width:640px){section{padding:84px 0}}
+.wp{display:flex;align-items:center;gap:12px;font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--sun);margin-bottom:18px}
+.wp b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--sun);font-family:var(--display);font-size:16px;letter-spacing:0;font-weight:400}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(44px,7vw,92px);line-height:.92;letter-spacing:.01em}
+.lede{font-family:var(--serif);font-size:clamp(18px,2vw,22px);color:var(--ink-soft);max-width:620px;margin-top:18px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- crowd vs trail ---------- */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+@media (max-width:820px){.versus{grid-template-columns:1fr}}
+.vs-card{border:1px solid var(--line);border-radius:22px;padding:26px;background:var(--card);position:relative;overflow:hidden}
+.vs-card h3{font-family:var(--display);font-weight:400;font-size:30px;letter-spacing:.02em}
+.vs-card p{color:var(--ink-soft);font-size:15px;margin-top:4px}
+.field{position:relative;height:220px;margin-top:18px;border-radius:14px;background:
+  repeating-radial-gradient(circle at 30% 120%,transparent 0 22px,var(--line) 22px 23px),var(--paper-2);overflow:hidden}
+.dot{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--rock-2);transition:left 1.6s cubic-bezier(.4,0,.2,1),top 1.6s cubic-bezier(.4,0,.2,1)}
+.vs-card.good .dot{background:var(--sun);width:14px;height:14px;box-shadow:0 0 0 5px color-mix(in srgb,var(--sun) 22%,transparent)}
+.noise{position:absolute;right:14px;top:12px;font:600 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.groups{display:grid;grid-template-columns:1.2fr .9fr 1.1fr .9fr;gap:14px;margin-top:28px;align-items:end}
+.groups figure{position:relative;border-radius:18px;overflow:hidden}
+.groups figure:nth-child(odd){aspect-ratio:1}
+.groups figure:nth-child(even){aspect-ratio:3/4}
+.groups img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.groups figure:hover img{transform:scale(1.06)}
+.groups figcaption{position:absolute;left:12px;bottom:10px;font:italic 15px var(--serif);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+@media (max-width:820px){.groups{grid-template-columns:1fr 1fr}}
+.reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+@media (max-width:820px){.reasons{grid-template-columns:1fr}}
+.reason{padding:22px 0;border-top:2px solid var(--ink)}
+.reason h4{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.2}
+.reason p{color:var(--ink-soft);margin-top:8px;font-size:15px}
+
+/* ---------- routes ---------- */
+.routes-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.drag-hint{font:500 13px var(--sans);color:var(--ink-soft)}
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:48px 24px 30px;margin-top:8px;scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.dragging{cursor:grabbing;scroll-snap-type:none}
+.route{flex:0 0 min(300px,72vw);aspect-ratio:3/4;border-radius:20px;position:relative;overflow:hidden;scroll-snap-align:center;user-select:none;box-shadow:0 14px 30px rgba(0,0,0,.18);transition:transform .4s cubic-bezier(.2,.8,.2,1);background:var(--paper-2)}
+.route:nth-child(odd){margin-top:26px}
+.route:hover{transform:translateY(-8px) rotate(-.8deg)}
+.route img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+
+/* ---------- stamps ---------- */
+.stamps{display:flex;flex-wrap:wrap;gap:16px;margin-top:52px;justify-content:center}
+.stamp{width:164px;height:164px;border-radius:50%;position:relative;display:grid;place-items:center;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.stamp:nth-child(odd){transform:rotate(-7deg)}
+.stamp:nth-child(even){transform:rotate(5deg)}
+.stamp:hover{transform:rotate(0) scale(1.07)}
+.stamp img{position:absolute;inset:24px;width:calc(100% - 48px);height:calc(100% - 48px);border-radius:50%;object-fit:cover;filter:saturate(1.05)}
+.stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite}
+.stamp:nth-child(even) svg{animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stamp::before{content:"";position:absolute;inset:4px;border-radius:50%;border:2px dashed var(--ink);opacity:.5}
+.stamp text{font:600 12.5px var(--sans);letter-spacing:.18em;fill:var(--ink)}
+.stamp b{position:relative;font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.06em;color:#fff;background:var(--sun);color:#1b1b1b;padding:2px 10px;border-radius:6px;transform:translateY(54px) rotate(-4deg)}
+
+/* ---------- how ---------- */
+.how{background:var(--rock-1);color:#efe9de}
+.how .lede{color:#b8b2a6}
+.how h2{color:#efe9de}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px;position:relative}
+.steps::before{content:"";position:absolute;top:26px;left:6%;right:6%;border-top:2px dashed rgba(239,233,222,.3)}
+@media (max-width:820px){.steps{grid-template-columns:1fr}.steps::before{display:none}}
+.step{position:relative}
+.step .n{width:54px;height:54px;border-radius:50%;background:var(--sun);color:#1b1b1b;display:grid;place-items:center;font-family:var(--display);font-size:26px;position:relative;z-index:1}
+.step h4{font-family:var(--serif);font-weight:600;font-size:22px;margin-top:18px}
+.step p{color:#b8b2a6;margin-top:6px;font-size:15px}
+.how .topo{position:absolute;inset:0;opacity:.09;pointer-events:none}
+
+/* ---------- numbers ---------- */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (max-width:820px){.nums{grid-template-columns:1fr 1fr}}
+.anniv{display:flex;align-items:center;gap:28px;margin-top:40px}
+.anniv img{width:150px;height:150px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 10px 30px rgba(0,0,0,.15);animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(3deg)}}
+.anniv p{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);max-width:560px;line-height:1.3}
+@media (max-width:640px){.anniv{flex-direction:column;align-items:flex-start}}
+.num{padding:30px 18px;border-right:1px solid var(--line)}
+.num:last-child{border-right:0}
+@media (max-width:820px){.num:nth-child(2){border-right:0}.num:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+.num b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(48px,6vw,76px);line-height:.9;color:var(--sun)}
+.num span{font-size:14px;color:var(--ink-soft)}
+
+/* ---------- cta ---------- */
+.cta{text-align:center;overflow:hidden;padding-bottom:0}
+.cta h2{font-size:clamp(56px,10vw,140px)}
+.cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;border:2px solid var(--ink);transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.primary{background:var(--sun);border-color:var(--sun);color:#1b1b1b}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.btn svg{width:18px;height:18px}
+.film{margin-top:80px;background:#111;padding:18px 0;position:relative;overflow:hidden;transform:rotate(-2deg) scale(1.04)}
+.film::before,.film::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,transparent 0 10px,#f3eee4 10px 22px);opacity:.75}
+.film::before{top:4px}.film::after{bottom:4px}
+.film-track{display:flex;gap:10px;width:max-content;animation:roll 70s linear infinite}
+.film:hover .film-track{animation-play-state:paused}
+.film-track img{height:220px;width:165px;object-fit:cover;border-radius:3px;filter:sepia(.15) saturate(1.1)}
+@keyframes roll{to{transform:translateX(-50%)}}
+footer{background:var(--rock-1);color:#a9a397;font-size:13px;padding:22px 0 30px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* trail line */
+.trail-svg{position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:0}
+.trail-svg path{fill:none;stroke:var(--sun);stroke-width:3;stroke-linecap:round;stroke-dasharray:2 12;opacity:.55}
+main{position:relative}
+main > section > .wrap{position:relative;z-index:1}
+
+[data-l]{display:none}
+html[lang="en"] [data-l="en"],html[lang="hy"] [data-l="hy"],html[lang="ru"] [data-l="ru"]{display:revert}
+html[lang="hy"] h1,html[lang="hy"] h2{font-family:"Noto Sans Armenian",sans-serif;font-weight:800;letter-spacing:-.01em;line-height:1}
+html[lang="hy"] h1{font-size:clamp(44px,8.5vw,120px)}
+html[lang="hy"] h2{font-size:clamp(34px,5vw,64px)}
+html[lang="ru"] h1,html[lang="ru"] h2{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.02em;line-height:1}
+html[lang="ru"] h1{font-size:clamp(46px,8.5vw,120px)}
+html[lang="ru"] h2{font-size:clamp(36px,5vw,66px)}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="48" fill="#f3eee4" stroke="#cfcac0" stroke-width="2"/>
+      <circle cx="56" cy="44" r="13" fill="#ee7a4c"/>
+      <path d="M14 74 L36 40 L50 58 L62 46 L86 74 Z" fill="#4a4a4a"/>
+      <path d="M50 58 L62 46 L86 74 L66 74 Z" fill="#8a8a88"/>
+      <path d="M30 82 C 44 74, 40 64, 54 60 S 60 74, 72 80" fill="none" stroke="#f3eee4" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav id="nav">
+  <a class="brand" href="#top"><svg><use href="#logo"/></svg><span>That Trail</span></a>
+  <div class="nav-r">
+    <div class="lang" role="group" aria-label="Language">
+      <button data-set="en" aria-pressed="true">EN</button>
+      <button data-set="hy" aria-pressed="false">ՀԱՅ</button>
+      <button data-set="ru" aria-pressed="false">RU</button>
+    </div>
+    <a class="pill" href="https://t.me/thattrail" target="_blank" rel="noopener">
+      <span data-l="en">Join a hike</span><span data-l="hy">Միանալ</span><span data-l="ru">В поход</span> →
+    </a>
+  </div>
+</nav>
+
+<div class="alt" aria-hidden="true">
+  <span>▲</span>
+  <div class="bar"><div class="fill" id="altFill"></div></div>
+  <div class="val" id="altVal">990 M</div>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero-photo" id="heroPhoto"><img src="../img/hero.jpg" alt="Clouds drifting over forested mountains in Armenia" fetchpriority="high"></div>
+  <div class="hero-shade"></div>
+  <figure class="polaroid p1"><img src="../img/group-summit.jpg" alt="A That Trail group on a summit of Mt. Aragats"><figcaption>Aragats</figcaption></figure>
+  <figure class="polaroid p2"><img src="../img/rest.jpg" alt="A hiker resting in a meadow"><figcaption>lunch break</figcaption></figure>
+  <div class="hero-copy">
+    <div class="eyebrow">
+      <span data-l="en">Small group hikes · Armenia · since 2021</span>
+      <span data-l="hy">Փոքր խմբային արշավներ · Հայաստան · 2021-ից</span>
+      <span data-l="ru">Походы малыми группами · Армения · с 2021</span>
+    </div>
+    <h1>
+      <span data-l="en">Fewer people.<br><em>More mountain.</em></span>
+      <span data-l="hy">Քիչ մարդ։<br><em>Շատ սար։</em></span>
+      <span data-l="ru">Меньше людей.<br><em>Больше гор.</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-l="en">No buses of forty. Just a handful of us, a good trail, and lunch with a view.</span>
+      <span data-l="hy">Ո՛չ քառասունհոգանոց ավտոբուսներ։ Մի քանի հոգի, լավ արահետ ու ճաշ՝ տեսարանով։</span>
+      <span data-l="ru">Никаких автобусов на сорок человек. Только мы, хорошая тропа и обед с видом.</span>
+    </p>
+  </div>
+  <div class="hero-tags">
+    <span>Shresht Gorge</span><span>Pink Gorge</span><span>Haghartsin → Dilijan</span><span>Aragats 3000 m</span><span>Khustup</span>
+  </div>
+  <div class="scroll-cue"><span data-l="en">Start walking</span><span data-l="hy">Սկսենք</span><span data-l="ru">В путь</span><i></i></div>
+</header>
+
+<main id="main">
+  <svg class="trail-svg" id="trailSvg" aria-hidden="true"><path id="trailPath"/></svg>
+
+  <!-- WHY SMALL -->
+  <section id="why">
+    <div class="wrap">
+      <div class="wp reveal"><b>1</b><span data-l="en">Waypoint · Why small</span><span data-l="hy">Կանգառ · Ինչու՞ փոքր</span><span data-l="ru">Точка · Почему мало</span></div>
+      <h2 class="reveal">
+        <span data-l="en">A trail feels different<br>when you can hear it.</span>
+        <span data-l="hy">Արահետն այլ է,<br>երբ լսում ես այն։</span>
+        <span data-l="ru">Тропа звучит иначе,<br>когда её слышно.</span>
+      </h2>
+      <p class="lede reveal">
+        <span data-l="en">Everyone has their own reason to hike. Ours is simple: in a small group you experience nature, each other, and yourself in a completely different way.</span>
+        <span data-l="hy">Յուրաքանչյուրն իր պատճառն ունի արշավելու։ Մերը պարզ է՝ փոքր խմբում մարդը բոլորովին այլ կերպ է զգում բնությունը, իրար և ինքն իրեն։</span>
+        <span data-l="ru">У каждого своя причина ходить в походы. Наша проста: в маленькой группе ты совсем иначе чувствуешь природу, друг друга и себя.</span>
+      </p>
+
+      <div class="versus">
+        <div class="vs-card reveal">
+          <span class="noise">≈ 40 · loud</span>
+          <h3><span data-l="en">The usual tour</span><span data-l="hy">Սովորական տուր</span><span data-l="ru">Обычный тур</span></h3>
+          <p><span data-l="en">A long queue on a narrow path.</span><span data-l="hy">Երկար հերթ նեղ արահետին։</span><span data-l="ru">Длинная очередь на узкой тропе.</span></p>
+          <div class="field" id="crowd"></div>
+        </div>
+        <div class="vs-card good reveal">
+          <span class="noise">a handful · quiet</span>
+          <h3><span data-l="en">That Trail</span><span data-l="hy">That Trail</span><span data-l="ru">That Trail</span></h3>
+          <p><span data-l="en">A pace that suits everyone, and room to breathe.</span><span data-l="hy">Բնական տեմպ ու տեղ՝ շնչելու։</span><span data-l="ru">Естественный темп и место, чтобы дышать.</span></p>
+          <div class="field" id="few"></div>
+        </div>
+      </div>
+
+      <div class="groups">
+        <figure class="reveal"><img src="../img/group-raincoats.jpg" alt="Hikers in colourful raincoats in a red rock gorge" loading="lazy"><figcaption><span data-l="en">Rain? Raincoats.</span><span data-l="hy">Անձրև՞։ Անձրևանոց։</span><span data-l="ru">Дождь? Дождевики.</span></figcaption></figure>
+        <figure class="reveal"><img src="../img/group-flowers.jpg" alt="A small group standing in a yellow flower meadow" loading="lazy"><figcaption><span data-l="en">Spring meadows</span><span data-l="hy">Գարնանային մարգագետին</span><span data-l="ru">Весенние луга</span></figcaption></figure>
+        <figure class="reveal"><img src="../img/group-hors.jpg" alt="Hikers looking out over mountains near Hors Lake" loading="lazy"><figcaption>Hors Lake</figcaption></figure>
+        <figure class="reveal"><img src="../img/walker.jpg" alt="A hiker walking a dirt road toward a rocky peak" loading="lazy"><figcaption><span data-l="en">Room to breathe</span><span data-l="hy">Տեղ՝ շնչելու</span><span data-l="ru">Место, чтобы дышать</span></figcaption></figure>
+      </div>
+
+      <div class="reasons">
+        <div class="reason reveal">
+          <h4><span data-l="en">A natural pace</span><span data-l="hy">Ներդաշնակ տեմպ</span><span data-l="ru">Естественный темп</span></h4>
+          <p><span data-l="en">Small groups move like one person. Nobody is rushed and nobody waits around.</span><span data-l="hy">Փոքր խումբը շարժվում է ներդաշնակ՝ ոչ ոք չի շտապում, ոչ ոք չի սպասում։</span><span data-l="ru">Маленькая группа идёт как один человек — никто не спешит и не ждёт.</span></p>
+        </div>
+        <div class="reason reveal">
+          <h4><span data-l="en">Freedom to decide</span><span data-l="hy">Որոշելու ազատություն</span><span data-l="ru">Свобода решать</span></h4>
+          <p><span data-l="en">Stay longer at the viewpoint, take the detour to the spring. With a few people, there's room for small wishes.</span><span data-l="hy">Մնալ տեսարանի մոտ, թեքվել դեպի աղբյուրը. փոքր խմբում տեղ կա յուրաքանչյուրի ցանկության համար։</span><span data-l="ru">Задержаться на виде, свернуть к роднику — в маленькой группе есть место для желаний каждого.</span></p>
+        </div>
+        <div class="reason reveal">
+          <h4><span data-l="en">Joy, actually shared</span><span data-l="hy">Կիսված ուրախություն</span><span data-l="ru">Радость, которой делятся</span></h4>
+          <p><span data-l="en">You came to get away from noise. Here you share the summit with people you actually got to know.</span><span data-l="hy">Եկել ես աղմուկից հեռու։ Այստեղ գագաթը կիսում ես մարդկանց հետ, ում իրոք ճանաչեցիր։</span><span data-l="ru">Вы пришли за тишиной. Здесь вершину делишь с теми, с кем успел по-настоящему познакомиться.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTES -->
+  <section id="routes" style="padding-bottom:60px">
+    <div class="wrap routes-head">
+      <div>
+        <div class="wp reveal"><b>2</b><span data-l="en">Waypoint · Trail log</span><span data-l="hy">Կանգառ · Երթուղիներ</span><span data-l="ru">Точка · Маршруты</span></div>
+        <h2 class="reveal">
+          <span data-l="en">Gorges, ridges,<br>monasteries, 3000 m.</span>
+          <span data-l="hy">Կիրճեր, լեռնաշղթաներ,<br>վանքեր, 3000 մ։</span>
+          <span data-l="ru">Ущелья, хребты,<br>монастыри, 3000 м.</span>
+        </h2>
+      </div>
+      <p class="drag-hint reveal">← <span data-l="en">drag the trail</span><span data-l="hy">քաշիր արահետը</span><span data-l="ru">листай тропу</span> →</p>
+    </div>
+    <div class="rail" id="rail"></div>
+  </section>
+
+  <!-- STAMPS -->
+  <section id="stamps" style="padding-top:60px">
+    <div class="wrap" style="text-align:center">
+      <div class="wp reveal" style="justify-content:center"><b>3</b><span data-l="en">Waypoint · Collect them</span><span data-l="hy">Կանգառ · Հավաքիր</span><span data-l="ru">Точка · Собери все</span></div>
+      <h2 class="reveal">
+        <span data-l="en">Every Saturday,<br>a new stamp.</span>
+        <span data-l="hy">Ամեն շաբաթ՝<br>նոր կնիք։</span>
+        <span data-l="ru">Каждую субботу —<br>новая отметка.</span>
+      </h2>
+      <div class="stamps">
+        <div class="stamp reveal"><img src="../img/s-summits.jpg" alt="Three hikers looking out over snowfields" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-summits" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-summits">THAT TRAIL · SUMMITS · ARAGATS · AZHDAHAK ·</textPath></text></svg><b>Summits</b></div>
+        <div class="stamp reveal"><img src="../img/s-waterfalls.jpg" alt="Hiker with berries by a waterfall" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-waterfalls" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-waterfalls">THAT TRAIL · WATERFALLS · GEGHAROT, 3000 M ·</textPath></text></svg><b>Waterfalls</b></div>
+        <div class="stamp reveal"><img src="../img/s-forests.jpg" alt="Hikers by a forest stream" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-forests" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-forests">THAT TRAIL · FORESTS · DILIJAN · LORI ·</textPath></text></svg><b>Forests</b></div>
+        <div class="stamp reveal"><img src="../img/s-roads.jpg" alt="A road leading toward Mt. Ararat" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-roads" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-roads">THAT TRAIL · ROADS · HALF THE FUN ·</textPath></text></svg><b>Roads</b></div>
+        <div class="stamp reveal"><img src="../img/s-gorges.jpg" alt="Snow bridge in a narrow gorge" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-gorges" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-gorges">THAT TRAIL · GORGES · SHRESHT · PINK ·</textPath></text></svg><b>Gorges</b></div>
+        <div class="stamp reveal"><img src="../img/s-moments.jpg" alt="A cup of coffee on a trail picnic" loading="lazy"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c-moments" d="M100 100 m-82 0 a82 82 0 1 1 164 0 a82 82 0 1 1 -164 0"/></defs><text><textPath textLength="500" lengthAdjust="spacing" href="#c-moments">THAT TRAIL · MOMENTS · COFFEE WITH A VIEW ·</textPath></text></svg><b>Moments</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="how" id="how">
+    <svg class="topo" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="#fff" stroke-width="1.2">
+        <path d="M-20 300 C 120 220, 260 340, 400 250 S 680 180, 820 260"/>
+        <path d="M-20 270 C 120 190, 260 310, 400 220 S 680 150, 820 230"/>
+        <path d="M-20 240 C 120 160, 260 280, 400 190 S 680 120, 820 200"/>
+        <path d="M-20 210 C 120 130, 260 250, 400 160 S 680 90, 820 170"/>
+        <path d="M-20 180 C 120 100, 260 220, 400 130 S 680 60, 820 140"/>
+        <path d="M-20 150 C 120 70, 260 190, 400 100 S 680 30, 820 110"/>
+        <path d="M-20 120 C 120 40, 260 160, 400 70 S 680 0, 820 80"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <div class="wp reveal"><b>4</b><span data-l="en">Waypoint · How it works</span><span data-l="hy">Կանգառ · Ինչպես</span><span data-l="ru">Точка · Как это работает</span></div>
+      <h2 class="reveal">
+        <span data-l="en">Three steps<br>to the trailhead.</span>
+        <span data-l="hy">Երեք քայլ<br>մինչև արահետ։</span>
+        <span data-l="ru">Три шага<br>до тропы.</span>
+      </h2>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="n">01</div>
+          <h4><span data-l="en">Spot the next route</span><span data-l="hy">Գտիր հաջորդ երթուղին</span><span data-l="ru">Найди маршрут</span></h4>
+          <p><span data-l="en">New hikes are announced on Telegram and Instagram, with the route, date and difficulty.</span><span data-l="hy">Նոր արշավները հայտարարվում են Telegram-ում և Instagram-ում՝ երթուղով, ամսաթվով և բարդությամբ։</span><span data-l="ru">Новые походы анонсируются в Telegram и Instagram: маршрут, дата, сложность.</span></p>
+        </div>
+        <div class="step reveal">
+          <div class="n">02</div>
+          <h4><span data-l="en">Claim your spot</span><span data-l="hy">Ամրագրիր տեղդ</span><span data-l="ru">Займи место</span></h4>
+          <p><span data-l="en">Spots are few by design. Message or call, and you're on the list.</span><span data-l="hy">Տեղերը միտումնավոր քիչ են։ Գրիր կամ զանգիր, և դու ցուցակում ես։</span><span data-l="ru">Мест специально мало. Напиши или позвони, и ты в списке.</span></p>
+        </div>
+        <div class="step reveal">
+          <div class="n">03</div>
+          <h4><span data-l="en">Walk. Breathe. Eat.</span><span data-l="hy">Քայլիր։ Շնչիր։ Ճաշիր։</span><span data-l="ru">Иди. Дыши. Ешь.</span></h4>
+          <p><span data-l="en">Bring good shoes and a raincoat (Armenian weather has opinions). We'll find the lunch spot.</span><span data-l="hy">Լավ կոշիկ ու անձրևանոց վերցրու (հայկական եղանակը իր կարծիքն ունի)։ Ճաշի տեղը մենք կգտնենք։</span><span data-l="ru">Хорошая обувь и дождевик (у армянской погоды своё мнение). Место для обеда найдём мы.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section id="nums">
+    <div class="wrap">
+      <div class="wp reveal"><b>5</b><span data-l="en">Waypoint · So far</span><span data-l="hy">Կանգառ · Մինչ այժմ</span><span data-l="ru">Точка · Пока что</span></div>
+      <h2 class="reveal">
+        <span data-l="en">Small groups.<br>Long story.</span>
+        <span data-l="hy">Փոքր խմբեր։<br>Երկար պատմություն։</span>
+        <span data-l="ru">Маленькие группы.<br>Долгая история.</span>
+      </h2>
+      <div class="anniv reveal"><img src="../img/anniversary.jpg" alt="That Trail 5th anniversary logo" loading="lazy"><p><span data-l="en">2026 is our fifth year on the trail. Thank you to everyone who walked with us.</span><span data-l="hy">2026-ը մեր հինգերորդ տարին է արահետին։ Շնորհակալություն բոլոր նրանց, ովքեր քայլեցին մեզ հետ։</span><span data-l="ru">2026 — наш пятый год на тропе. Спасибо всем, кто шёл с нами.</span></p></div>
+      <div class="nums">
+        <div class="num reveal"><b data-count="2021">2021</b><span data-l="en">on the trail since</span><span data-l="hy">արահետին ենք</span><span data-l="ru">на тропе с</span></div>
+        <div class="num reveal"><b data-count="3000">3000</b><span data-l="en">metres, highest waterfall stop</span><span data-l="hy">մետր՝ Գեղարոտ ջրվեժ</span><span data-l="ru">метров — водопад Гегарот</span></div>
+        <div class="num reveal"><b data-count="323">323</b><span data-l="en">trail stories posted</span><span data-l="hy">պատմություն արահետից</span><span data-l="ru">историй с тропы</span></div>
+        <div class="num reveal"><b data-count="870">870</b><span data-l="en">people following along</span><span data-l="hy">հետևորդ</span><span data-l="ru">подписчиков</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="join">
+    <div class="wrap">
+      <div class="wp reveal" style="justify-content:center"><b>⛳</b><span data-l="en">Summit</span><span data-l="hy">Գագաթ</span><span data-l="ru">Вершина</span></div>
+      <h2 class="reveal">
+        <span data-l="en">Save me<br>a spot.</span>
+        <span data-l="hy">Ինձ համար<br>տեղ պահեք։</span>
+        <span data-l="ru">Оставьте мне<br>место.</span>
+      </h2>
+      <p class="lede reveal" style="margin:18px auto 0">
+        <span data-l="en">Groups fill up fast because they're small on purpose.</span>
+        <span data-l="hy">Խմբերը արագ են լրանում, քանի որ միտումնավոր փոքր են։</span>
+        <span data-l="ru">Группы быстро заполняются: они маленькие намеренно.</span>
+      </p>
+      <div class="btns reveal">
+        <a class="btn primary" href="https://t.me/thattrail" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 19.9c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.5l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3z"/></svg>
+          Telegram · @thattrail
+        </a>
+        <a class="btn ghost" href="tel:+37495115615">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          +374 95 115 615
+        </a>
+        <a class="btn ghost" href="https://www.instagram.com/that_trail_/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          @that_trail_
+        </a>
+      </div>
+    </div>
+    <div class="film" aria-hidden="true"><div class="film-track"><img src="../img/f-09.jpg" alt="" loading="lazy"><img src="../img/f-16.jpg" alt="" loading="lazy"><img src="../img/f-19.jpg" alt="" loading="lazy"><img src="../img/f-20.jpg" alt="" loading="lazy"><img src="../img/f-22.jpg" alt="" loading="lazy"><img src="../img/f-23.jpg" alt="" loading="lazy"><img src="../img/f-26.jpg" alt="" loading="lazy"><img src="../img/f-33.jpg" alt="" loading="lazy"><img src="../img/f-41.jpg" alt="" loading="lazy"><img src="../img/f-43.jpg" alt="" loading="lazy"><img src="../img/f-47.jpg" alt="" loading="lazy"><img src="../img/f-49.jpg" alt="" loading="lazy"><img src="../img/f-53.jpg" alt="" loading="lazy"><img src="../img/f-08.jpg" alt="" loading="lazy"><img src="../img/f-18.jpg" alt="" loading="lazy"><img src="../img/f-09.jpg" alt="" loading="lazy"><img src="../img/f-16.jpg" alt="" loading="lazy"><img src="../img/f-19.jpg" alt="" loading="lazy"><img src="../img/f-20.jpg" alt="" loading="lazy"><img src="../img/f-22.jpg" alt="" loading="lazy"><img src="../img/f-23.jpg" alt="" loading="lazy"><img src="../img/f-26.jpg" alt="" loading="lazy"><img src="../img/f-33.jpg" alt="" loading="lazy"><img src="../img/f-41.jpg" alt="" loading="lazy"><img src="../img/f-43.jpg" alt="" loading="lazy"><img src="../img/f-47.jpg" alt="" loading="lazy"><img src="../img/f-49.jpg" alt="" loading="lazy"><img src="../img/f-53.jpg" alt="" loading="lazy"><img src="../img/f-08.jpg" alt="" loading="lazy"><img src="../img/f-18.jpg" alt="" loading="lazy"></div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© That Trail Hikes · <span data-l="en">Exceptionally small group hikes in Armenia since 2021</span><span data-l="hy">Բացառիկ փոքր խմբային արշավներ Հայաստանում՝ 2021-ից</span><span data-l="ru">Исключительно маленькие групповые походы по Армении с 2021</span></span>
+    <span>#thattrail #thattrailhikes</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- language ---------- */
+  const setLang = l => {
+    root.lang = l;
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.set === l));
+    try { localStorage.setItem('tt-lang', l); } catch (e) {}
+    requestAnimationFrame(buildTrail);
+  };
+  document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.set)));
+  try { const s = localStorage.getItem('tt-lang'); if (s) setLang(s); } catch (e) {}
+
+  /* ---------- routes (from the Instagram feed) ---------- */
+  const routes = [
+    ['shresht','Shresht Gorge'],['pink-gorge','Pink Gorge'],['haghartsin','Haghartsin → Dilijan'],['mozrov','Mozrov → Noravank'],
+    ['maymekh','Maymekh, Lori'],['khachrozan','Around Khachrozan'],['aragats-south','Mt. Aragats, Southern'],['gegharot','Gegharot Waterfall'],
+    ['azhdahak','Azhdahak & Karmir Katar'],['aparan','Aparan Reservoir Loop'],['amberd','Antarut → Amberd'],['dimats','Mt. Dimats'],
+    ['andzavabatsat','Andzavabatsat'],['apakekar','Apakekar Trail'],['lusadzor','Lusadzor → Mtnadzor'],['havuts-tar','Havuts Tar'],
+    ['arpa','Arpa Protected Landscape'],['vayots-dzor','Ararat → Vayots Dzor'],['sarnut','Mt. Sarnut'],['gastro-azat','Gastro Azat'],
+    ['smbatabert','Smbataberd'],['trchkan','Trchkan Waterfall']
+  ];
+  const rail = document.getElementById('rail');
+  routes.forEach(([f, name]) => {
+    const el = document.createElement('article');
+    el.className = 'route';
+    el.innerHTML = `<img src="../img/r-${f}.jpg" alt="That Trail route cover: ${name}" loading="lazy" draggable="false">`;
+    rail.appendChild(el);
+  });
+  // drag to scroll
+  let down = false, sx = 0, sl = 0;
+  rail.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl = rail.scrollLeft; rail.classList.add('dragging'); });
+  addEventListener('pointerup', () => { down = false; rail.classList.remove('dragging'); });
+  rail.addEventListener('pointermove', e => { if (down) rail.scrollLeft = sl - (e.clientX - sx); });
+
+  /* ---------- crowd vs few ---------- */
+  const mkDots = (id, n) => {
+    const f = document.getElementById(id), dots = [];
+    for (let i = 0; i < n; i++) { const d = document.createElement('i'); d.className = 'dot'; f.appendChild(d); dots.push(d); }
+    return dots;
+  };
+  const crowd = mkDots('crowd', 40), few = mkDots('few', 6);
+  let t = 0;
+  const moveDots = () => {
+    t++;
+    crowd.forEach((d, i) => {
+      // a jostling queue along a narrow path
+      const p = (i / 40 + t * 0.013) % 1;
+      d.style.left = (4 + p * 88 + (Math.random() - .5) * 4) + '%';
+      d.style.top = (48 + Math.sin(p * 6.3) * 22 + (Math.random() - .5) * 14) + '%';
+    });
+    const cx = 25 + ((t * 7) % 50), cy = 45 + Math.sin(t / 2) * 12;
+    few.forEach((d, i) => {
+      const a = i / 6 * Math.PI * 2 + t * .3;
+      d.style.left = (cx + Math.cos(a) * 9) + '%';
+      d.style.top = (cy + Math.sin(a) * 14) + '%';
+    });
+  };
+  moveDots();
+  if (!reduce) setInterval(moveDots, 1700);
+
+  /* ---------- trail line weaving down the page ---------- */
+  const main = document.getElementById('main'), svg = document.getElementById('trailSvg'), path = document.getElementById('trailPath');
+  let len = 0;
+  function buildTrail() {
+    const w = main.offsetWidth, h = main.offsetHeight;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.style.height = h + 'px';
+    const pts = []; const steps = 9;
+    for (let i = 0; i <= steps; i++) pts.push([i % 2 ? w * 0.92 : w * 0.06, (h / steps) * i]);
+    let d = `M${w * .5} 0`;
+    pts.forEach(([x, y], i) => { if (!i) return; const [px, py] = pts[i - 1]; d += ` C ${px} ${py + (y - py) * .6}, ${x} ${y - (y - py) * .6}, ${x} ${y}`; });
+    path.setAttribute('d', d);
+    len = path.getTotalLength();
+    path.style.strokeDasharray = `2 12`;
+    onScroll();
+  }
+
+  /* ---------- scroll effects ---------- */
+  const nav = document.getElementById('nav'), heroPhoto = document.getElementById('heroPhoto');
+  const polas = [...document.querySelectorAll('.polaroid')];
+  const altFill = document.getElementById('altFill'), altVal = document.getElementById('altVal');
+  function onScroll() {
+    const y = scrollY, vh = innerHeight, max = document.documentElement.scrollHeight - vh;
+    nav.classList.toggle('solid', y > 40);
+    if (!reduce && y < vh * 1.2) {
+      heroPhoto.style.transform = `translateY(${y * .35}px)`;
+      polas.forEach((p, i) => p.style.transform = `translateY(${-y * (i ? .25 : .45)}px) rotate(${i ? 7 : -8}deg)`);
+    }
+    const p = max > 0 ? Math.min(1, y / max) : 0;
+    altFill.style.height = (p * 100) + '%';
+    altVal.textContent = Math.round(990 + p * (3000 - 990)) + ' M';
+    // reveal the trail as you walk it
+    if (len) {
+      const mTop = main.offsetTop, prog = Math.max(0, Math.min(1, (y + vh * .6 - mTop) / main.offsetHeight));
+      const mask = `linear-gradient(#000 ${prog * 100}%, transparent ${prog * 100 + 2}%)`;
+      svg.style.webkitMaskImage = mask; svg.style.maskImage = mask;
+    }
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', buildTrail);
+  addEventListener('load', buildTrail);
+  buildTrail();
+
+  /* ---------- reveal + count up ---------- */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll('[data-count]').forEach(b => {
+      const end = +b.dataset.count, start = end > 2000 && end < 2100 ? 2000 : 0, t0 = performance.now();
+      const tick = now => { const k = Math.min(1, (now - t0) / 1400); b.textContent = Math.round(start + (end - start) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(tick); };
+      if (!reduce) requestAnimationFrame(tick);
+    });
+    io.unobserve(e.target);
+  }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
